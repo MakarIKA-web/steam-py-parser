@@ -22,7 +22,7 @@ This tool can help gamers and analysts quickly identify the best deals on Steam 
 
 ---
 
-How it works
+How it works 
 
 1. The script launches a Chromium browser session in non-headless mode (you can switch this to headless if preferred).
 2. It navigates to the Steam Specials page filtered by top sellers.

@@ -9,14 +9,13 @@ def parse_price(price_str):
         return 0.0
     # Clean the price string by removing unwanted characters
     cleaned = price_str.replace('kr', '') \
-                       .replace('€', '') \
-                       .replace('£', '') \
-                       .replace('$', '') \
-                       .replace(',', '.') \  # Replace commas with dots (e.g. for decimals)
-                       .replace(u'\xa0', '') \  # Remove non-breaking space (if any)
-                       .strip()  # Remove leading and trailing whitespace
-    # Remove any non-numeric characters except for the decimal point and negative sign
-    cleaned = re.sub(r'[^0-9\.-]', '', cleaned)
+                        .replace('€', '') \
+                        .replace('£', '') \
+                        .replace('$', '') \
+                        .replace(',', '.') \
+                        .replace(u'\xa0', '') \
+                        .strip()
+    cleaned = re.sub(r'[^0-9.-]', '', cleaned)
     try:
         # Attempt to convert the cleaned price string to a float
         return float(cleaned)

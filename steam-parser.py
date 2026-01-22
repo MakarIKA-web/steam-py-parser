@@ -7,7 +7,7 @@ import re  # Regular expressions for cleaning and parsing strings
 def parse_price(price_str):
     if not price_str:  # If the price string is empty or None, return 0.0
         return 0.0
-    # Clean the price string by removing unwanted characters
+    # Clean the price string by removing unwanted characters 
     cleaned = price_str.replace('kr', '') \
                         .replace('€', '') \
                         .replace('£', '') \

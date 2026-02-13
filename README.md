@@ -1,103 +1,181 @@
-Steam Specials Scraper
+# 🎮 Steam Specials Scraper
 
-This project is a Python web scraper that extracts information about discounted games from the Steam Store’s "Specials" page (Top Sellers section). It collects key details such as game title, store link, release date, user review sentiment, number of reviews, original price, discounted price, discount percentage, and the calculated savings amount. The results are saved into an Excel file for easy analysis.
+![Python](https://img.shields.io/badge/python-3.7%2B-blue)
+![License](https://img.shields.io/github/license/MakarIKA-web/steam-py-parser)
 
-Description
+A Python web scraper that collects discounted game data from Steam's
+**Specials (Top Sellers)** page and exports it into a structured Excel
+file.
 
-Steam frequently runs sales and discounts on many popular games. This scraper automates the process of gathering current deals by programmatically navigating to the Steam Specials page and extracting data from the game listing containers.
+Built using **Playwright** for browser automation and **pandas** for
+data processing.
 
-It uses Playwright for browser automation to fully render the page content and pandas to structure and export the collected data. The script processes price strings, converts them into numeric values, calculates total savings, sorts the games by highest discount, and exports everything into an Excel spreadsheet.
+------------------------------------------------------------------------
 
-The output is a neatly formatted Excel file (steam_specials.xlsx) containing:
+## 📌 Overview
 
-Game Title
+Steam frequently runs sales on popular games. This project automates the
+process of gathering current discounts by:
 
-Store Link
+-   Opening Steam's Specials page
+-   Extracting game information
+-   Cleaning and formatting price data
+-   Calculating savings
+-   Exporting results into an Excel spreadsheet
 
-Release Date
+The final output is a ready-to-use `steam_specials.xlsx` file for easy
+analysis.
 
-User Review Sentiment
+------------------------------------------------------------------------
 
-Number of Reviews
+## 📊 Data Collected
 
-Discount Percentage
+For each discounted game, the scraper collects:
 
-Original Price
+-   Game Title\
+-   Store Link\
+-   Release Date\
+-   User Review Sentiment\
+-   Number of Reviews\
+-   Discount Percentage\
+-   Original Price\
+-   Discounted Price\
+-   Total Savings (calculated)
 
-Discounted Price
+Games are automatically sorted by highest discount.
 
-Total Savings (calculated)
+------------------------------------------------------------------------
 
-How It Works
+## ⚙️ How It Works
 
-Launches a Chromium browser session using Playwright
+1.  Launches a Chromium browser session using Playwright\
+2.  Navigates to Steam's Specials (Top Sellers) page\
+3.  Scrolls to load all visible games\
+4.  Extracts data using CSS selectors\
+5.  Cleans and converts price strings into numeric values\
+6.  Calculates savings\
+7.  Sorts results by discount\
+8.  Exports everything to Excel
 
-Navigates to the Steam Specials (Top Sellers) page
+------------------------------------------------------------------------
 
-Waits for the content to fully load
+## 🧰 Installation
 
-Extracts game data using CSS selectors
+### 1️⃣ Clone the Repository
 
-Cleans and converts price values
-
-Calculates savings for each game
-
-Sorts results by discount percentage (descending)
-
-Exports data into steam_specials.xlsx
-
-Installation & Requirements
-
-Prerequisites:
-
-Python 3.7+
-
-Playwright
-
-pandas
-
-openpyxl
-
-Install dependencies:
-
-pip install playwright pandas openpyxl
-
-After installing Playwright, install the required browser binaries:
-
-python -m playwright install
-
-Usage
-
-Clone the repository:
-
+``` bash
 git clone https://github.com/MakarIKA-web/steam-py-parser.git
-
 cd steam-py-parser
+```
+
+### 2️⃣ (Optional but Recommended) Create a Virtual Environment
+
+**Linux/macOS**
+
+``` bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+**Windows**
+
+``` bash
+python -m venv .venv
+.\.venv\Scripts\activate
+```
+
+### 3️⃣ Install Dependencies
+
+``` bash
+pip install playwright pandas openpyxl
+```
+
+### 4️⃣ Install Playwright Browsers
+
+``` bash
+python -m playwright install
+```
+
+------------------------------------------------------------------------
+
+## 🚀 Usage
 
 Run the script:
 
+``` bash
 python steam-parser.py
+```
 
-After execution, the file steam_specials.xlsx will be created in the project directory.
+After execution, you will find:
 
-Notes
+    steam_specials.xlsx
 
-The scraper relies on Steam’s current HTML structure. If Steam updates their website layout, CSS selectors may need adjustments.
+in the project directory.
 
-You can enable headless mode in the script if you prefer background execution.
+------------------------------------------------------------------------
 
-Loading delays may vary depending on network speed.
+## 🕶 Running in Headless Mode
 
-License
+If you prefer running without opening a visible browser window, modify:
 
-This project is open-source and available under the MIT License.
+``` python
+browser = playwright.chromium.launch(headless=True)
+```
 
-Contributions
+------------------------------------------------------------------------
 
-Feel free to fork the repository and submit pull requests to improve or extend the functionality.
+## 📂 Project Structure
 
-Contact
+    steam-py-parser/
+    │
+    ├── steam-parser.py
+    ├── README.md
+    └── steam_specials.xlsx (generated)
 
-For questions or issues, please open an issue on the GitHub repository.
+------------------------------------------------------------------------
 
-Happy gaming and happy scraping! 🎮
+## ⚠️ Notes & Limitations
+
+-   The scraper depends on Steam's current HTML structure.\
+    If Steam updates their layout, CSS selectors may need adjustments.
+-   Fixed timeouts are used; slower networks may require tuning.
+-   Excessive automated scraping may violate Steam's Terms of Service.\
+    Use responsibly.
+
+------------------------------------------------------------------------
+
+## 📈 Example Output
+
+  Game Title     Discount   Original Price   Sale Price   Savings
+  -------------- ---------- ---------------- ------------ ---------
+  Example Game   -75%       \$59.99          \$14.99      \$45.00
+
+------------------------------------------------------------------------
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1.  Fork the repository\
+2.  Create a new branch\
+3.  Make your changes\
+4.  Submit a Pull Request
+
+Please ensure your code is clean and well-documented.
+
+------------------------------------------------------------------------
+
+## 📜 License
+
+This project is licensed under the MIT License.
+
+------------------------------------------------------------------------
+
+## 💬 Contact
+
+If you encounter issues or have feature suggestions, please open an
+issue on the GitHub repository.
+
+------------------------------------------------------------------------
+
+Happy gaming and happy scraping! 🎮✨

@@ -1,100 +1,103 @@
 Steam Specials Scraper
 
-This project is a web scraper that extracts information about discounted games from the Steam store's "Specials" page (top sellers). It collects key details such as game title, release date, user review sentiment, number of reviews, original and discounted prices, and the savings amount. The results are saved into an Excel file for easy analysis.
+This project is a Python web scraper that extracts information about discounted games from the Steam Store’s "Specials" page (Top Sellers section). It collects key details such as game title, store link, release date, user review sentiment, number of reviews, original price, discounted price, discount percentage, and the calculated savings amount. The results are saved into an Excel file for easy analysis.
 
 Description
 
-Steam frequently runs sales and discounts on many popular games. This scraper automates the process of gathering current deals by programmatically navigating to the Steam Specials page and extracting data from the game listing containers. It uses Playwright for browser automation to render the page fully and then parses the game information using CSS selectors.
+Steam frequently runs sales and discounts on many popular games. This scraper automates the process of gathering current deals by programmatically navigating to the Steam Specials page and extracting data from the game listing containers.
+
+It uses Playwright for browser automation to fully render the page content and pandas to structure and export the collected data. The script processes price strings, converts them into numeric values, calculates total savings, sorts the games by highest discount, and exports everything into an Excel spreadsheet.
 
 The output is a neatly formatted Excel file (steam_specials.xlsx) containing:
 
-- Game Title
-- Store Link
-- Release Date
-- User Review Sentiment
-- Number of Reviews
-- Discount Percentage
-- Original Price
-- Discounted Price
-- Total Savings (calculated)
+Game Title
 
-This tool can help gamers and analysts quickly identify the best deals on Steam without manually browsing the website.
+Store Link
 
----
+Release Date
 
-How it works 
+User Review Sentiment
 
-1. The script launches a Chromium browser session in non-headless mode (you can switch this to headless if preferred).
-2. It navigates to the Steam Specials page filtered by top sellers.
-3. Waits for the page content to load fully, including a scroll to the bottom to load more games.
-4. It selects all the game containers from the page using CSS selectors.
-5. Extracts relevant data such as game title, prices, discount, review ratings, and links.
-6. Cleans and converts price strings into numerical values.
-7. Calculates the savings for each game.
-8. Sorts the games by discount percentage in descending order.
-9. Exports the collected data into an Excel spreadsheet.
+Number of Reviews
 
----
+Discount Percentage
+
+Original Price
+
+Discounted Price
+
+Total Savings (calculated)
+
+How It Works
+
+Launches a Chromium browser session using Playwright
+
+Navigates to the Steam Specials (Top Sellers) page
+
+Waits for the content to fully load
+
+Extracts game data using CSS selectors
+
+Cleans and converts price values
+
+Calculates savings for each game
+
+Sorts results by discount percentage (descending)
+
+Exports data into steam_specials.xlsx
 
 Installation & Requirements
 
-Prerequisites
+Prerequisites:
 
-- Python 3.7+
-- Playwright (https://playwright.dev/python/)
-- pandas
-- openpyxl (for Excel support)
+Python 3.7+
 
-Installing dependencies
+Playwright
 
-You can install the required Python packages using pip:
+pandas
+
+openpyxl
+
+Install dependencies:
 
 pip install playwright pandas openpyxl
 
-After installing Playwright, you need to install the browser binaries:
+After installing Playwright, install the required browser binaries:
 
 python -m playwright install
 
----
-
 Usage
 
-1. Clone this repository or download the script.
+Clone the repository:
 
-2. Run the Python script:
+git clone https://github.com/MakarIKA-web/steam-py-parser.git
 
-python steam_specials_scraper.py
+cd steam-py-parser
 
-3. The script will open a Chromium browser window, navigate to Steam's specials page, and scrape the data.
+Run the script:
 
-4. After completion, an steam_specials.xlsx file will be created in the same directory.
+python steam-parser.py
 
----
+After execution, the file steam_specials.xlsx will be created in the project directory.
 
 Notes
 
-- The script uses a fixed CSS selector for Steam's page structure. If Steam updates their website design, selectors might need adjustments.
-- You can set headless=True in browser.launch() for silent background scraping.
-- The script waits for some fixed timeouts; these may need tuning depending on your network speed.
+The scraper relies on Steam’s current HTML structure. If Steam updates their website layout, CSS selectors may need adjustments.
 
----
+You can enable headless mode in the script if you prefer background execution.
+
+Loading delays may vary depending on network speed.
 
 License
 
 This project is open-source and available under the MIT License.
 
----
-
 Contributions
 
-Feel free to fork this repository and submit pull requests if you want to improve or extend the functionality.
-
----
+Feel free to fork the repository and submit pull requests to improve or extend the functionality.
 
 Contact
 
 For questions or issues, please open an issue on the GitHub repository.
 
----
-
-Happy gaming and happy scraping! 🎮✨
+Happy gaming and happy scraping! 🎮
